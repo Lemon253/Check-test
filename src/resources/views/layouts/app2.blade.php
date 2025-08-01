@@ -20,17 +20,28 @@
 
             <nav>
                 <ul class="header-nav">
-                    {{-- @if (Auth::check()) --}}
-                    <li class="header-nav__item">
-                        <a class="header-nav__link" href="/mypage">マイページ</a>
-                    </li>
+                    @if (request()->is('admin'))
                     <li class="header-nav__item">
                         <form class="form" action="/logout" method="post">
                             @csrf
-                            <button class="header-nav__button">ログアウト</button>
+                            <button class="header-nav__button">logout</button>
                         </form>
                     </li>
-                    {{-- @endif --}}
+                    @elseif (request()->is('login'))
+                    <li class="header-nav__item">
+                        <form class="form" action="/register" method="get">
+                            @csrf
+                            <button class="header-nav__button">register</button>
+                        </form>
+                    </li>
+                    @elseif (request()->is('register'))
+                    <li class="header-nav__item">
+                        <form class="form" action="/login" method="get">
+                            @csrf
+                            <button class="header-nav__button">login</button>
+                        </form>
+                    </li>
+                    @endif
                 </ul>
             </nav>
         </div>
