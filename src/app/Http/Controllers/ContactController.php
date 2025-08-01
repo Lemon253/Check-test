@@ -32,4 +32,9 @@ class ContactController extends Controller
         //thanks.blade.php を呼び出し
         return view('thanks');
     }
+
+    public function admin()
+    {
+        return view('auth.admin');
+    }
 }
