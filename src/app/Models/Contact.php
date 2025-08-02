@@ -16,9 +16,6 @@ class Contact extends Model
         'tel',
         'address',
         'building',
-        'detail',
-        'cteated_at',
-        'updated_at'
-
+        'detail'
     ];
 }

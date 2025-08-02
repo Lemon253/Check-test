@@ -23,16 +23,20 @@ class ContactRequest extends FormRequest
      */
     public function rules()
     {
+        /*
         return [
-            //
+            //修正予定
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255'],
             'tel' => ['required', 'numeric', 'digits_between:10,11'],
         ];
+        */
     }
 
     public function messages()
     {
+        //修正予定
+        /*
         return[
             'name.required' => '名前を入力してください',
             'name.string' => '名前を文字列で入力してください',
@@ -45,5 +49,6 @@ class ContactRequest extends FormRequest
             'tel.numeric' => '電話番号を数値で入力してください',
             'tel.digits_between' => '電話番号を10桁から11桁の間で入力してください',
         ];
+        */
     }
 }
