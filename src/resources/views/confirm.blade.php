@@ -7,20 +7,20 @@
 @section('content')
 <div class="confirm__content">
     <div class="confirm__heading">
-        <h2>お問い合わせ内容確認</h2>
+        <h2>Confirm</h2>
     </div>
     <!-- 中身の確認 -->
-    <?php print_r($contact) ?>
+    <!-- <?php print_r($contact) ?> -->
 
-    <form class="form" action="/contacts" method="post">
+    <form class="form" action="/thanks" method="post">
         @csrf
         <div class="confirm-table">
             <table class="confirm-table__inner">
                 <tr class="confirm-table__row">
                     <th class="confirm-table__header">お名前</th>
                     <td class="confirm-table__text">
-                        <input type="text" name="last_name" value="{{ $contact['last_name'] }}" readonly />
-                        <input type="text" name="first_name" value="{{ $contact['first_name'] }}" readonly />
+                        <input type="text" class="space-name" name="last_name" value="{{ $contact['last_name'] }}" readonly />
+                        <input type="text" class="space-name" name="first_name" value="{{ $contact['first_name'] }}" readonly />
                     </td>
                 </tr>
                 <tr class="confirm-table__row">
@@ -38,7 +38,9 @@
                 <tr class="confirm-table__row">
                     <th class="confirm-table__header">電話番号</th>
                     <td class="confirm-table__text">
-                        <input type="tel" name="tel" value="{{ $contact['tel'] }}" readonly />
+                        <input type="tel" class="space-tel" name="area-code" value="{{ $contact['area-code'] }}" readonly />
+                        <input type="tel" class="space-tel" name="number1" value="{{ $contact['number1'] }}" readonly />
+                        <input type="tel" class="space-tel" name="number2" value="{{ $contact['number2'] }}" readonly />
                     </td>
                 </tr>
                 <tr class="confirm-table__row">
@@ -50,7 +52,7 @@
                 <tr class="confirm-table__row">
                     <th class="confirm-table__header">建物名</th>
                     <td class="confirm-table__text">
-                        <input type="text" name="gender" value="{{ $contact['building'] }}" readonly />
+                        <input type="text" name="building" value="{{ $contact['building'] }}" readonly />
                     </td>
                 </tr>
                 <tr class="confirm-table__row">
@@ -68,11 +70,8 @@
             </table>
         </div>
         <div class="form__button">
-            <button class="form__button-submit" type="submit">送信</button>
-            <form class="form" action="/" method="get">
-                @csrf
-                <button class="header-nav__button">修正</button>
-            </form>
+            <button class="form__button-submit" type="submit" name="submit" value="submit">送信</button>
+            <button class="form__button-back" type="submit" name="back" value="back">修正</button>
         </div>
     </form>
 </div>

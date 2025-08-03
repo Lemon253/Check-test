@@ -10,7 +10,7 @@
     <div class="contact-form__heading">
         <h2>Contact</h2>
     </div>
-    <form class="form" action="contacts/confirm" method="post">
+    <form class="form" action="/confirm" method="post">
         @csrf
         <div class="form__group">
             <div class="form__group-title">
@@ -41,15 +41,15 @@
             </div>
             <div class="form__group-content">
                 <label>
-                    <input type="radio" name="gender" value="男性" required checked />
+                    <input type="radio" name="gender" value="男性" required {{ old('gender') == '男性' ? 'checked' : '' }} />
                     男性
                 </label>
                 <label>
-                    <input type="radio" name="gender" value="女性" required />
+                    <input type="radio" name="gender" value="女性" required {{ old('gender') == '女性' ? 'checked' : '' }} />
                     女性
                 </label>
                 <label>
-                    <input type="radio" name="gender" value="その他" required />
+                    <input type="radio" name="gender" value="その他" required {{ old('gender') == 'その他' ? 'checked' : '' }} />
                     その他
                 </label>
                 <div class="form__error">
@@ -84,11 +84,11 @@
             </div>
             <div class="form__group-content">
                 <div class="form__input--text">
-                    <input type="tel" id="area-code" name="area-code" placeholder="080" value="{{ old('area-code') }}" maxlength="3" required style="width: 60px;" />
+                    <input type="tel" name="area-code" placeholder="080" value="{{ old('area-code') }}" maxlength="3" required style="width: 60px;" />
                     <span>-</span>
-                    <input type="tel" id="number1" name="number1" placeholder="1234" value="{{ old('number1') }}" maxlength="4" required style="width: 60px;" />
+                    <input type="tel" name="number1" placeholder="1234" value="{{ old('number1') }}" maxlength="4" required style="width: 60px;" />
                     <span>-</span>
-                    <input type="tel" id="number2" name="number2" placeholder="5678" value="{{ old('number2') }}" maxlength="4" required style="width: 60px;" />
+                    <input type="tel" name="number2" placeholder="5678" value="{{ old('number2') }}" maxlength="4" required style="width: 60px;" />
                 </div>
                 <div class="form__error">
                     @error('area-code')
@@ -105,7 +105,7 @@
             </div>
             <div class="form__group-content">
                 <div class="form__input--text">
-                    <input type="text" name="address" placeholder="例:例: 東京都渋谷区千駄ヶ谷1-2-3" value="{{ old('address') }}" />
+                    <input type="text" name="address" placeholder="例: 東京都渋谷区千駄ヶ谷1-2-3" value="{{ old('address') }}" />
                 </div>
                 <div class="form__error">
                     @error('address')
@@ -121,7 +121,7 @@
             </div>
             <div class="form__group-content">
                 <div class="form__input--text">
-                    <input type="text" name="building" placeholder="例:例: 千駄ヶ谷マンション101" value="{{ old('building') }}" />
+                    <input type="text" name="building" placeholder="例: 千駄ヶ谷マンション101" value="{{ old('building') }}" />
                 </div>
                 <div class="form__error">
                     @error('building')
@@ -139,9 +139,13 @@
             <div class="form__group-content">
                 <div class="form__input--text">
                     <select name="content" required>
-                        <option value="">選択してください</option>
-                        <option value="exchange">商品交換について</option>
-                        <option value="return">返品について</option>
+                        <option value="" {{ old('content') == '' ? 'selected' : '' }}>選択してください</option>
+                        <option value="商品のお届けについて" {{ old('content') == '商品のお届けについて' ? 'selected' : '' }}>商品のお届けについて</option>
+                        <option value="商品の交換について" {{ old('content') == '商品の交換について' ? 'selected' : '' }}>商品の交換について</option>
+                        <option value="商品トラブル" {{ old('content') == '商品トラブル' ? 'selected' : '' }}>商品トラブル</option>
+                        <option value="ショップへのお問い合わせ" {{ old('content') == 'ショップへのお問い合わせ' ? 'selected' : '' }}>ショップへのお問い合わせ</option>
+                        <option value="その他" {{ old('content') == 'その他' ? 'selected' : '' }}>その他</option>
+
                     </select>
                 </div>
                 <div class="form__error">

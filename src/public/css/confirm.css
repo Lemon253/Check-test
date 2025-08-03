@@ -53,9 +53,25 @@
 }
 
 .confirm-table__text input {
-    width: 100%;
+    display: inline;
+    /* width: auto; */
     outline: none;
     border: none;
+}
+.space-name {
+    display: inline;
+    width: 1em;
+    /* 必要に応じて調整 */
+    margin-right: 5px;
+    /* 入力フィールドの間にスペースを追加 */
+}
+
+.space-tel {
+        display: inline;
+            width: 4em;
+            /* 必要に応じて調整 */
+            margin-right: 5px;
+            /* 入力フィールドの間にスペースを追加 */
 }
 
 .confirm-table__row:last-child .confirm-table__header,
@@ -76,5 +92,17 @@
     border-radius: 3px;
     background: #000;
     color: #fff;
+    cursor: pointer;
+}
+
+.form__button-back {
+    padding: 10px;
+    width: auto;
+    height: 50px;
+    text-decoration: underline;
+    border: none;
+    background-color: transparent;
+    border-radius: 3px;
+    color: black;
     cursor: pointer;
 }
