@@ -15,8 +15,11 @@
     <main>
         <div class="thanks__content">
             <div class="thanks__heading">
-                <h2>お問い合わせありがとうございます</h2>
+                <h2>お問い合わせありがとうございました</h2>
             </div>
+            <form action="{{ route('home') }}" method="get">
+                <button type="submit" class="thanks__button">HOME</button>
+            </form>
         </div>
     </main>
 </body>
