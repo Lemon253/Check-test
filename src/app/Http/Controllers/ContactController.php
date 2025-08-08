@@ -34,15 +34,6 @@ class ContactController extends Controller
             'detail'
         ]);
 
-        // 電話番号の各部分を取得
-        $areaCode = $request->input('area-code');
-        $number1 = $request->input('number1');
-        $number2 = $request->input('number2');
-
-
-        // 電話番号を配列に格納
-        $contact['tel'] = $areaCode . '-' . $number1 . '-' . $number2;
-
         //値の確認
         //return view('confirm');
         //return view('confirm', ['contact' => $contact]);
@@ -61,12 +52,21 @@ class ContactController extends Controller
                 'last_name',
                 'gender',
                 'email',
-                'tel',
                 'address',
                 'building',
                 'content',
                 'detail'
             ]);
+
+
+
+            // 電話番号の各部分を取得
+            $areaCode = $request->input('area-code');
+            $number1 = $request->input('number1');
+            $number2 = $request->input('number2');
+            // 電話番号を配列に格納
+            $contact['tel'] = $areaCode . $number1 . $number2;
+
             //$contact の変数に格納されたデータを作成
             //Contact::create($contact);
             //thanks.blade.php を呼び出し
@@ -79,33 +79,4 @@ class ContactController extends Controller
         }
     }
 
-
-
-    //public function store(ContactRequest $request)
-    public function store(Request $request)
-    {
-        //修正予定
-        $contact = $request->only([
-            'first_name',
-            'last_name',
-            'gender',
-            'email',
-            'tel',
-            'address',
-            'building',
-            'content',
-            'detail'
-        ]);
-
-        //$contact の変数に格納されたデータを作成
-        //Contact::create($contact);
-
-        //thanks.blade.php を呼び出し
-        return view('thanks');
-    }
-
-    public function admin()
-    {
-        return view('auth.admin');
-    }
 }
