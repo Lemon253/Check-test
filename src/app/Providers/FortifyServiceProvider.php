@@ -13,6 +13,9 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Laravel\Fortify\Fortify;
 
+use Laravel\Fortify\Http\Requests\LoginRequest as FortifyLoginRequest;
+use App\Http\Requests\AuthRequest;
+
 class FortifyServiceProvider extends ServiceProvider
 {
     /**
@@ -38,10 +41,16 @@ class FortifyServiceProvider extends ServiceProvider
             return view('auth.login');
         });
 
+        // カスタムリクエストを使用
+    //Fortify::registerUsing(AuthRequest::class);
+
+
         RateLimiter::for('login', function (Request $request) {
             $email = (string) $request->email;
 
             return Limit::perMinute(10)->by($email . $request->ip());
         });
+
+        $this->app->bind(FortifyLoginRequest::class, AuthRequest::class);
     }
 }
