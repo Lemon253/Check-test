@@ -79,4 +79,9 @@ class ContactController extends Controller
         }
     }
 
+    public function admin(Request $request)
+    {
+        return view('auth.admin');
+    }
+
 }
