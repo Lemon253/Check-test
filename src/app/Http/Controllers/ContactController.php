@@ -58,8 +58,6 @@ class ContactController extends Controller
                 'detail'
             ]);
 
-
-
             // 電話番号の各部分を取得
             $areaCode = $request->input('area-code');
             $number1 = $request->input('number1');

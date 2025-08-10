@@ -41,16 +41,13 @@ class FortifyServiceProvider extends ServiceProvider
             return view('auth.login');
         });
 
-        // カスタムリクエストを使用
-    //Fortify::registerUsing(AuthRequest::class);
-
-
         RateLimiter::for('login', function (Request $request) {
             $email = (string) $request->email;
 
             return Limit::perMinute(10)->by($email . $request->ip());
         });
 
+        //ログインのバリデーションファイル設定
         $this->app->bind(FortifyLoginRequest::class, LoginRequest::class);
     }
 }
