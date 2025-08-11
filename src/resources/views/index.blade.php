@@ -41,15 +41,15 @@
             </div>
             <div class="form__group-content">
                 <label>
-                    <input type="radio" name="gender" value="男性" required {{ old('gender', '男性') == '男性' ? 'checked' : '' }} />
+                    <input type="radio" name="gender" value="1" required {{ old('gender', '1') == '1' ? 'checked' : '' }} />
                     男性
                 </label>
                 <label>
-                    <input type="radio" name="gender" value="女性" required {{ old('gender') == '女性' ? 'checked' : '' }} />
+                    <input type="radio" name="gender" value="2" required {{ old('gender') == '2' ? 'checked' : '' }} />
                     女性
                 </label>
                 <label>
-                    <input type="radio" name="gender" value="その他" required {{ old('gender') == 'その他' ? 'checked' : '' }} />
+                    <input type="radio" name="gender" value="3" required {{ old('gender') == '3' ? 'checked' : '' }} />
                     その他
                 </label>
                 <div class="form__error">
