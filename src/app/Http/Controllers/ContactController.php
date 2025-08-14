@@ -89,7 +89,10 @@ class ContactController extends Controller
 
     public function admin(Request $request)
     {
-        return view('auth.admin');
+        //Contactsテーブルの情報取得
+        $contacts = Contact::all();
+
+        return view('auth.admin', compact('contacts'));
     }
 
 }
