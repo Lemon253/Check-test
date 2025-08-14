@@ -25,7 +25,6 @@ class LoginRequest extends FormRequest
     {
         return [
             //バリデーションルール
-            'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|',
             'password' => 'required|string|min:8|',
         ];
@@ -34,9 +33,9 @@ class LoginRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => '名前は必須です。',
-            'email.required' => 'メールアドレスは必須です。',
-            'password.required' => 'パスワードは必須です。',
+            'email.required' => 'メールアドレスを入力してください',
+            'email.email' => 'メールアドレスは「ユーザ名＠ドメイン」形式で入力してください',
+            'password.required' => 'パスワードを入力してください',
         ];
     }
 }
