@@ -75,9 +75,13 @@ class ContactController extends Controller
             $contact['category_id'] = $categoryId;
 
             //$contact の変数に格納されたデータを作成
-            Contact::create($contact);
+            //Contact::create($contact);
+            
             //thanks.blade.php を呼び出し
-            return view('thanks')->with('message', 'フォームが送信されました。');
+            //return view('thanks')->with('message', 'フォームが送信されました。');
+
+            //配列の中身確認用
+            return view('thanks', compact('contact'))->with('message', 'フォームが送信されました。');
         } else {
             // カテゴリが見つからなかった場合の処理
             return redirect()->back()->with('error', '指定されたカテゴリが見つかりません。')->withInput();

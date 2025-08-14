@@ -11,8 +11,11 @@
 </head>
 
 <body>
-
     <main>
+
+        <!-- 中身の確認 -->
+        <?php print_r($contact) ?>
+
         <div class="thanks__content">
             <div class="thanks__heading">
                 <h2>お問い合わせありがとうございました</h2>
