@@ -91,6 +91,10 @@ class ContactController extends Controller
     {
         //Contactsテーブルの情報取得
         $contacts = Contact::all();
+        //Categoriesテーブルの問い合わせの種類取得
+        $content = Category::select('content')->get();
+
+        //　管理画面用の配列作成
 
         return view('auth.admin', compact('contacts'));
     }
