@@ -57,10 +57,7 @@ class ContactController extends Controller
                 'content',
                 'detail'
             ]);
-
-            //$contact の変数のcontentに格納されたデータを作成
-            //Category::create($contact['content']);
-
+            
             // 電話番号の各部分を取得
             $areaCode = $request->input('area-code');
             $number1 = $request->input('number1');
@@ -68,27 +65,22 @@ class ContactController extends Controller
             // 電話番号を配列に格納
             $contact['tel'] = $areaCode . $number1 . $number2;
 
-            // categories テーブルの id を取得
-            $categoryId = Category::where('content', $contact['content'])->value('id');
+            // categories テーブルに新しいカテゴリを作成            
+            $category =Category::create($contact);
 
-            // category_id を追加
-            $contact['category_id'] = $categoryId;
+            //　category_id を追加
+            $contact['category_id'] = $category->id;
 
             //$contact の変数に格納されたデータを作成
-            //Contact::create($contact);
-            
+            Contact::create($contact);
+
             //thanks.blade.php を呼び出し
             //return view('thanks')->with('message', 'フォームが送信されました。');
 
             //配列の中身確認用
             return view('thanks', compact('contact'))->with('message', 'フォームが送信されました。');
-        } else {
-            // カテゴリが見つからなかった場合の処理
-            return redirect()->back()->with('error', '指定されたカテゴリが見つかりません。')->withInput();
-                }
-
-        // 修正ボタンが押された場合の処理
-        if ($request->input('back') === 'back') {
+        } elseif ($request->input('back') === 'back') {
+            // 修正ボタンが押された場合の処理
             return redirect('/')
             ->with('message', '送信がキャンセルされました。')
             ->withInput();
