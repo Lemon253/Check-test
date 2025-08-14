@@ -5,6 +5,9 @@
 @endsection
 
 @section('content')
+
+<!-- <?php print_r($contacts) ?> -->
+
 <div class="todo__content">
     <div class="admin__header">
         <div class="admin-header__ttl">
@@ -26,8 +29,11 @@
         <table class="todo-table__inner">
             <tr class="todo-table__row">
                 <th class="todo-table__header">
-                    <span class="todo-table__header-span">Todo</span>
-                    <span class="todo-table__header-span">カテゴリ</span>
+                    <span class="todo-table__header-span">お名前</span>
+                    <span class="todo-table__header-span">性別</span>
+                    <span class="todo-table__header-span">メールアドレス</span>
+                    <span class="todo-table__header-span">お問い合わせの種類</span>
+
                 </th>
             </tr>
             @foreach ($contacts as $contact)
@@ -35,7 +41,13 @@
                 <td class="todo-table__item">
                     <form class="update-form">
                         <div class="update-form__item">
+                            <p class="update-form__item-input">{{ $contact['last_name'] }}</p>
                             <p class="update-form__item-input">{{ $contact['first_name'] }}</p>
+                            <p class="update-form__item-input">{{ $contact['gender'] }}</p>
+                            <p class="update-form__item-input">{{ $contact['email'] }}</p>
+                            <p class="update-form__item-input">{{ $contact['content'] }}</p>
+
+
                         </div>
                         <div class="update-form__button">
                             <button class="update-form__button-submit" type="submit">
