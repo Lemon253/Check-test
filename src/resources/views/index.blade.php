@@ -138,14 +138,15 @@
             </div>
             <div class="form__group-content">
                 <div class="form__input--text">
-                    <select name="content" required>
-                        <option value="" {{ old('content') == '' ? 'selected' : '' }}>選択してください</option>
-                        <option value="商品のお届けについて" {{ old('content') == '商品のお届けについて' ? 'selected' : '' }}>商品のお届けについて</option>
-                        <option value="商品の交換について" {{ old('content') == '商品の交換について' ? 'selected' : '' }}>商品の交換について</option>
-                        <option value="商品トラブル" {{ old('content') == '商品トラブル' ? 'selected' : '' }}>商品トラブル</option>
-                        <option value="ショップへのお問い合わせ" {{ old('content') == 'ショップへのお問い合わせ' ? 'selected' : '' }}>ショップへのお問い合わせ</option>
-                        <option value="その他" {{ old('content') == 'その他' ? 'selected' : '' }}>その他</option>
-
+                    <select name="category_id" required>
+                        <option value="" disabled {{ old('category_id') == '' ? 'selected' : '' }}>
+                            選択してください
+                        </option>
+                        @foreach($category as $cat)
+                        <option value="{{ $cat->id }}" {{ old('category_id') == $cat->id ? 'selected' : '' }}>
+                            {{ $cat->content }}
+                        </option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="form__error">

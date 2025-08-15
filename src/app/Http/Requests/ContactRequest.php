@@ -35,7 +35,7 @@ class ContactRequest extends FormRequest
             'number1' => ['required', 'regex:/^[0-9]{1,5}$/'],
             'number2' => ['required', 'regex:/^[0-9]{1,5}$/'],
             'address' => ['required'],
-            'content'=> ['required'],
+            'category_id'=> ['required'],
             'detail' => ['required','max:120']
 
         ];
