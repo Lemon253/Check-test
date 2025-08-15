@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        // 作成したシーダーファイル登録
+        $this->call(CategoriesTableSeeder::class);
     }
 }
