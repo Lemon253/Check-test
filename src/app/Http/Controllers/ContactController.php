@@ -12,6 +12,7 @@ class ContactController extends Controller
     //
     public function index()
     {
+        //categoryテーブルの値取得
         $category = Category::all();
         return view('index',compact('category'));
     }
@@ -34,6 +35,7 @@ class ContactController extends Controller
             'category_id',
             'detail'
         ]);
+        //categoryテーブルの値をcategory_idに代入
         $category = Category::find($contact['category_id']);
         //viewへ値の受け渡し
        return view('confirm', compact('contact', 'category'));
@@ -62,12 +64,6 @@ class ContactController extends Controller
             $number2 = $request->input('number2');
             // 電話番号を配列に格納
             $contact['tel'] = $areaCode . $number1 . $number2;
-
-            // categories テーブルに新しいカテゴリを作成            
-            //$category =Category::create($contact);
-
-            //　category_id を追加
-           // $contact['category_id'] = $category->id;
 
             //$contact の変数に格納されたデータを作成
             Contact::create($contact);
