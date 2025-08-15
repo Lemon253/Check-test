@@ -12,6 +12,7 @@ class Category extends Model
         'content'
     ];
 
+    //リレーションの設定
     public function contact()
     {
         return $this->hasMany(Contact::class);

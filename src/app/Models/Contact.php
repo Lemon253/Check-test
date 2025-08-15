@@ -23,6 +23,7 @@ class Contact extends Model
         'updated_at'
     ];
 
+    //リレーションの設定
     public function category()
     {
         return $this->belongsTo(Category::class);
