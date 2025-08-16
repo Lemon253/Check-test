@@ -17,8 +17,10 @@
     <form class="search-form">
         <div class="search-form__item">
             <input class="search-form__item-input" type="text" />
-            <select class="search-form__item-select">
-                <option value="">カテゴリ</option>
+            <select class="create-form__item-select" name="category_id">
+                @foreach ($contacts as $contact)
+                    <option value="{{ $contact['category_id'] }}">テスト</option>
+                @endforeach
             </select>
         </div>
         <div class="search-form__button">
@@ -41,13 +43,11 @@
                 <td class="todo-table__item">
                     <form class="update-form">
                         <div class="update-form__item">
-                            <p class="update-form__item-input">{{ $contact['last_name'] }}</p>
-                            <p class="update-form__item-input">{{ $contact['first_name'] }}</p>
-                            <p class="update-form__item-input">{{ $contact['gender'] }}</p>
-                            <p class="update-form__item-input">{{ $contact['email'] }}</p>
-                            <p class="update-form__item-input">{{ $contact['content'] }}</p>
-
-
+                            <span class="update-form__item-input">{{ $contact['last_name'] }}</span>
+                            <span class="update-form__item-input">{{ $contact['first_name'] }}</span>
+                            <span class="update-form__item-input">{{ $contact['gender'] }}</span>
+                            <span class="update-form__item-input">{{ $contact['email'] }}</span>
+                            <span class="update-form__item-input">{{ $contact->category->name }}</span>
                         </div>
                         <div class="update-form__button">
                             <button class="update-form__button-submit" type="submit">

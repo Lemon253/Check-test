@@ -84,13 +84,13 @@ class ContactController extends Controller
     public function admin(Request $request)
     {
         //Contactsテーブルの情報取得
-        $contacts = Contact::all();
-        //Categoriesテーブルの問い合わせの種類取得
-        $content = Category::select('content')->get();
+        //$contacts = Contact::all();
+        //categoryテーブルの値取得
+        $contacts = Contact::with('category')->get();
 
         //　管理画面用の配列作成
-
         return view('auth.admin', compact('contacts'));
     }
+
 
 }
