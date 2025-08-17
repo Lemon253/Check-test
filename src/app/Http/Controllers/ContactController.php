@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\ContactRequest;
 use App\Models\Contact;
 use App\Models\Category;
+use Illuminate\Support\Facades\Session;
 
 class ContactController extends Controller
 {
@@ -14,7 +15,7 @@ class ContactController extends Controller
     {
         //categoryテーブルの値取得
         $category = Category::all();
-        return view('index',compact('category'));
+        return view('index', compact('category'));
     }
 
     public function confirm(ContactRequest $request)
@@ -38,8 +39,7 @@ class ContactController extends Controller
         //categoryテーブルの値をcategory_idに代入
         $category = Category::find($contact['category_id']);
         //viewへ値の受け渡し
-       return view('confirm', compact('contact', 'category'));
-
+        return view('confirm', compact('contact', 'category'));
     }
 
     public function thanks(Request $request)
@@ -57,7 +57,7 @@ class ContactController extends Controller
                 'category_id',
                 'detail'
             ]);
-            
+
             // 電話番号の各部分を取得
             $areaCode = $request->input('area-code');
             $number1 = $request->input('number1');
@@ -76,8 +76,8 @@ class ContactController extends Controller
         } elseif ($request->input('back') === 'back') {
             // 修正ボタンが押された場合の処理
             return redirect('/')
-            ->with('message', '送信がキャンセルされました。')
-            ->withInput();
+                ->with('message', '送信がキャンセルされました。')
+                ->withInput();
         }
     }
 
@@ -87,10 +87,45 @@ class ContactController extends Controller
         //$contacts = Contact::all();
         //categoryテーブルの値取得
         $contacts = Contact::with('category')->get();
+        // カテゴリーリスト
+        $categories = Category::all();
+
+        Session::forget('searches');
 
         //　管理画面用の配列作成
-        return view('auth.admin', compact('contacts'));
+        return view('auth.admin', compact('contacts', 'categories'));
     }
 
+    public function search(Request $request)
+    {
+        $searches = $request->all();
+        Session::put('searches', $searches);
 
+        if ($request->input('reset') === 'reset') {
+            Session::forget('searches');
+        }
+
+        $contacts = Contact::with('category');
+        if ($searches['search'] != '') {
+            $contacts->where('detail', 'like', '%' . $searches['search'] . '%');
+            $contacts->orWhere('first_name', 'like', '%' . $searches['search'] . '%');
+            $contacts->orWhere('last_name', 'like', '%' . $searches['search'] . '%');
+            $contacts->orWhere('email', 'like', '%' . $searches['search'] . '%');
+        }
+        if ($searches['category_id'] != '') {
+            $contacts->where('category_id', $searches['category_id']);
+        }
+        if ($searches['gender'] != '') {
+            $contacts->where('gender', $searches['gender']);
+        }
+        if ($searches['created_at'] != '') {
+            $contacts->whereDate('created_at', $searches['created_at']);
+        }
+        $contacts = $contacts->get();
+
+        // カテゴリーリスト
+        $categories = Category::all();
+
+        return view('auth.admin', compact('contacts', 'categories'));
+    }
 }

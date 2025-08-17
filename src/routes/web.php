@@ -20,3 +20,4 @@ Route::post('/thanks', [ContactController::class, 'thanks']);
 
 //ログインしていない管理画面が表示されない
 Route::get('/admin', [ContactController::class, 'admin'])->middleware('auth');
+Route::post('/admin/search', [ContactController::class, 'search'])->middleware('auth');
