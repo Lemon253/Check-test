@@ -17,13 +17,13 @@
         <div class="search-form__item">
             <input class="search-form__item-input" type="text" name="search" @if(session('searches.search')) value="{{ session('searches.search') }}" @endif />
             <input class="search-form__item-input" type="date" name="created_at" @if(session('searches.created_at')) value="{{ session('searches.created_at') }}" @endif />
-            <select class="search-form__item-select" name="gender">
+            <select class="search-form__item-select-gender" name="gender">
                 <option value="" @if(session('searches.gender')=='' ) selected @endif>性別</option>
                 <option value="1" @if(session('searches.gender')=='1' ) selected @endif>男性</option>
                 <option value="2" @if(session('searches.gender')=='2' ) selected @endif>女性</option>
                 <option value="3" @if(session('searches.gender')=='3' ) selected @endif>その他</option>
             </select>
-            <select class="create-form__item-select" name="category_id">
+            <select class="search-form__item-select-category" name="category_id">
                 @foreach ($categories as $category)
                 <option value="{{ $category->id }}"
                     @if(session('searches.category_id')==$category->id)
