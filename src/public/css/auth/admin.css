@@ -98,13 +98,13 @@ width: 100%;
 }
 
 .todo-table__row {
+display: flex;
 border-bottom: 1px solid #ddd;
 }
 
 .todo-table__header {
+display: inline-block;
 padding: 12px;
-width: 20%;
-text-align: left;
 font-weight: bold;
 }
 
@@ -113,7 +113,7 @@ font-weight: bold;
 margin-right: 10px;
 }
 
-.todo-table__item:first-of-type {
+.todo-table__item {
 padding: 12px;
 width: 90%;
 }

@@ -43,40 +43,46 @@
             <tr class="todo-table__row">
                 <th class="todo-table__header">
                     <span class="todo-table__header-span">お名前</span>
-                    <span class="todo-table__header-span">性別</span>
-                    <span class="todo-table__header-span">メールアドレス</span>
-                    <span class="todo-table__header-span">お問い合わせの種類</span>
-
                 </th>
+                <th class="todo-table__header">
+                    <span class="todo-table__header-span">性別</span>
+                </th>
+                <th class="todo-table__header">
+                    <span class="todo-table__header-span">メールアドレス</span>
+                </th>
+                <th class="todo-table__header">
+                    <span class="todo-table__header-span">お問い合わせの種類</span>
+                </th>
+
             </tr>
             @foreach ($contacts as $contact)
             <tr class="todo-table__row">
-                <td class="todo-table__item">
-                    <form class="update-form">
-                        <div class="update-form__item">
+                <form class="update-form">
+                    <div class="update-form__item">
+                        <td class="todo-table__item">
                             <span class="update-form__item-input">{{ $contact->last_name }}</span>
+                        </td>
+                        <td class="todo-table__item">
                             <span class="update-form__item-input">{{ $contact->first_name }}</span>
+                        </td>
+                        <td class="todo-table__item">
                             <span class="update-form__item-input">{{ $contact->gender }}</span>
+                        </td>
+                        <td class="todo-table__item">
                             <span class="update-form__item-input">{{ $contact->email }}</span>
+                        </td>
+                        <td class="todo-table__item">
                             <span class="update-form__item-input">{{ $contact->category->content }}</span>
-                        </div>
+                        </td>
+                    </div>
+                    <td>
                         <div class="update-form__button">
                             <button class="update-form__button-submit" type="submit">
                                 更新
                             </button>
                         </div>
-                    </form>
-                </td>
-                <td class="todo-table__item">
-                    <form class="delete-form" action="/todos/delete" method="post">
-                        @method('DELETE') @csrf
-                        <div class="delete-form__button">
-                            <button class="delete-form__button-submit" type="submit">
-                                削除
-                            </button>
-                        </div>
-                    </form>
-                </td>
+                    </td>
+                </form>
             </tr>
             @endforeach
         </table>
