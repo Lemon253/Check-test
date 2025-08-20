@@ -121,10 +121,16 @@ class ContactController extends Controller
         if ($searches['created_at'] != '') {
             $contacts->whereDate('created_at', $searches['created_at']);
         }
-        $contacts = $contacts->get();
+        //contactsとリレーションデータ取得
+        //$contacts = $contacts->get();
 
+        //ページネーションの設定
+        $perPage = 10; // 例: 10件表示
+        $contacts = $contacts->paginate($perPage);
+        
         // カテゴリーリスト
         $categories = Category::all();
+
 
         return view('auth.admin', compact('contacts', 'categories'));
     }

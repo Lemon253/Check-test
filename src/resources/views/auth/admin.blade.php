@@ -78,7 +78,7 @@
                     <td>
                         <div class="update-form__button">
                             <button class="update-form__button-submit" type="submit">
-                                更新
+                                詳細
                             </button>
                         </div>
                     </td>
@@ -86,6 +86,7 @@
             </tr>
             @endforeach
         </table>
+        {{-- {{ $contacts->links() }} --}}
     </div>
 </div>
 @endsection
