@@ -86,7 +86,12 @@ class ContactController extends Controller
         //Contactsテーブルの情報取得
         //$contacts = Contact::all();
         //categoryテーブルの値取得
-        $contacts = Contact::with('category')->get();
+        //$contacts = Contact::with('category')->get();
+
+        //ページネーションの設定
+        $perPage = 1; // 例: 10件表示
+        $contacts = Contact::with('category')->paginate($perPage);
+
         // カテゴリーリスト
         $categories = Category::all();
 
@@ -125,9 +130,9 @@ class ContactController extends Controller
         //$contacts = $contacts->get();
 
         //ページネーションの設定
-        $perPage = 10; // 例: 10件表示
+        $perPage = 1; // 例: 10件表示
         $contacts = $contacts->paginate($perPage);
-        
+
         // カテゴリーリスト
         $categories = Category::all();
 

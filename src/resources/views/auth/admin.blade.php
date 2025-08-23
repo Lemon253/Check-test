@@ -86,7 +86,7 @@
             </tr>
             @endforeach
         </table>
-        {{-- {{ $contacts->links() }} --}}
+        {{ $contacts->links() }} 
     </div>
 </div>
 @endsection
