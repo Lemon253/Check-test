@@ -65,32 +65,26 @@
             </tr>
             @foreach ($contacts as $contact)
             <tr class="todo-table__row">
-                <form class="update-form">
-                    <div class="update-form__item">
-                        <td class="todo-table__item">
-                            <span class="update-form__item-input">{{ $contact->last_name }}</span>
-                        </td>
-                        <td class="todo-table__item">
-                            <span class="update-form__item-input">{{ $contact->first_name }}</span>
-                        </td>
-                        <td class="todo-table__item">
-                            <span class="update-form__item-input">{{ $contact->gender }}</span>
-                        </td>
-                        <td class="todo-table__item">
-                            <span class="update-form__item-input">{{ $contact->email }}</span>
-                        </td>
-                        <td class="todo-table__item">
-                            <span class="update-form__item-input">{{ $contact->category->content }}</span>
-                        </td>
-                    </div>
-                    <td>
-                        <div class="update-form__button">
-                            <button class="update-form__button-submit" type="submit">
-                                詳細
-                            </button>
-                        </div>
-                    </td>
-                </form>
+                <td class="todo-table__item"
+                    data-last-name="{{ $contact->last_name }}"
+                    data-first-name="{{ $contact->first_name }}"
+                    data-gender="{{ $contact->gender }}"
+                    data-email="{{ $contact->email }}"
+                    data-tel="{{ $contact->tel }}"
+                    data-address="{{ $contact->address }}"
+                    data-building="{{ $contact->building }}"
+                    data-category="{{ $contact->category->content }}"
+                    data-detail="{{ $contact->detail }}">
+                    {{ $contact->last_name }} {{ $contact->first_name }}
+                </td>
+                <td class="todo-table__item">
+                    {{ $contact->gender == 1 ? '男性' : ($contact->gender == 2 ? '女性' : 'その他') }}
+                </td>
+                <td class="todo-table__item">{{ $contact->email }}</td>
+                <td class="todo-table__item">{{ $contact->category->content }}</td>
+                <td>
+                    <button class="update-form__button-submit" type="button">詳細</button>
+                </td>
             </tr>
             @endforeach
         </table>
@@ -98,4 +92,45 @@
     </div>
 </div>
 <script src="{{ asset('/js/admin.js') }}"></script>
+{{-- モーダルウィンドウ --}}
+<div class="modal" id="modal" style="display:none;">
+    <div class="modal-content">
+        <table>
+            <tr>
+                <th>お名前</th>
+                <td><span id="modal-last-name"></span> <span id="modal-first-name"></span></td>
+            </tr>
+            <tr>
+                <th>性別</th>
+                <td><span id="modal-gender"></span></td>
+            </tr>
+            <tr>
+                <th>メールアドレス</th>
+                <td><span id="modal-email"></span></td>
+            </tr>
+            <tr>
+                <th>電話番号</th>
+                <td><span id="modal-tel"></span></td>
+            </tr>
+            <tr>
+                <th>住所</th>
+                <td><span id="modal-address"></span></td>
+            </tr>
+            <tr>
+                <th>建物名</th>
+                <td><span id="modal-building"></span></td>
+            </tr>
+            <tr>
+                <th>お問い合わせの種類</th>
+                <td><span id="modal-category"></span></td>
+            </tr>
+            <tr>
+                <th>お問い合わせ内容</th>
+                <td><span id="modal-detail"></span></td>
+            </tr>
+        </table>
+        <button id="close-modal">閉じる</button>
+    </div>
+</div>
+
 @endsection

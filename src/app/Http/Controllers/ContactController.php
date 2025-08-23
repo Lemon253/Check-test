@@ -89,7 +89,7 @@ class ContactController extends Controller
         //$contacts = Contact::with('category')->get();
 
         //ページネーションの設定
-        $perPage = 1; // 例: 10件表示
+        $perPage = 10; // 例: 10件表示
         $contacts = Contact::with('category')->paginate($perPage);
 
         // カテゴリーリスト
