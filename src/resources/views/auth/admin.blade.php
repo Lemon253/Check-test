@@ -1,4 +1,12 @@
 @extends('layouts.app2')
+<style>
+    svg.w-5.h-5 {
+        /*paginateメソッドの矢印の大きさ調整のために追加*/
+        width: 30px;
+        height: 30px;
+    }
+</style>
+
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/auth/admin.css') }}">
@@ -86,7 +94,8 @@
             </tr>
             @endforeach
         </table>
-        {{ $contacts->links() }} 
+        {{ $contacts->links() }}
     </div>
 </div>
+<script src="{{ asset('/js/admin.js') }}"></script>
 @endsection
