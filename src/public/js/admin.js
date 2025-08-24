@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
             let data = row.dataset;
 
             // モーダルにデータをセット
+        
             document.getElementById("modal-last-name").textContent = data.lastName;
             document.getElementById("modal-first-name").textContent = data.firstName;
             document.getElementById("modal-gender").textContent =
@@ -23,6 +24,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // モーダル表示
             modal.style.display = "block";
+
+            // 削除フォームのactionを設定
+            document.getElementById("delete-form").action = "admin/delete/" + data.id;
         });
     });
 

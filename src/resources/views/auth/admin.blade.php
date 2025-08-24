@@ -63,9 +63,11 @@
                 </th>
 
             </tr>
+            {{-- モーダルウィンドウ用データ --}}
             @foreach ($contacts as $contact)
             <tr class="todo-table__row">
                 <td class="todo-table__item"
+                    data-id="{{ $contact->id }}"
                     data-last-name="{{ $contact->last_name }}"
                     data-first-name="{{ $contact->first_name }}"
                     data-gender="{{ $contact->gender }}"
@@ -130,6 +132,11 @@
             </tr>
         </table>
         <button id="close-modal">閉じる</button>
+        <form id="delete-form" action="" method="POST">
+            @csrf
+            @method('DELETE')
+            <input type="submit" id="delete-button" class="red" value="削除"></input>
+        </form>
     </div>
 </div>
 

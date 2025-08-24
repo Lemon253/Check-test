@@ -168,3 +168,13 @@ background: #ff0000;
 color: #fff;
 cursor: pointer;
 }
+
+.modal {
+    position: fixed;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 10%;
+    padding: 50px;
+    left: 40%;
+    top: 40vh;
+}

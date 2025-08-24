@@ -139,4 +139,11 @@ class ContactController extends Controller
 
         return view('auth.admin', compact('contacts', 'categories'));
     }
+
+    public function delete(string $id)
+    {
+        Contact::destroy($id);
+
+        return redirect('/admin');
+    }
 }
