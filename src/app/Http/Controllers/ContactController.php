@@ -106,6 +106,7 @@ class ContactController extends Controller
         $searches = $request->all();
         Session::put('searches', $searches);
 
+        //リセットボタン押下で入力初期化
         if ($request->input('reset') === 'reset') {
             Session::forget('searches');
         }
@@ -130,12 +131,11 @@ class ContactController extends Controller
         //$contacts = $contacts->get();
 
         //ページネーションの設定
-        $perPage = 1; // 例: 10件表示
+        $perPage = 1; // 例: 1件表示
         $contacts = $contacts->paginate($perPage);
 
         // カテゴリーリスト
         $categories = Category::all();
-
 
         return view('auth.admin', compact('contacts', 'categories'));
     }
